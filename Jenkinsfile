@@ -56,10 +56,10 @@ pipeline {
             }
         }
 
-        stage ("Jr Publish") {
+        stage ("Jar Publish") {
             steps {
                 script {
-                   echo '<---------------- Jar Publish Started --------------->'
+                   echo "<---------------- Jar Publish Started --------------->"
                 def server = Artifactory.newServer url: registry + "/artifactory", credentialsId: "JFrog-cred"
 
                 def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}"
@@ -81,11 +81,13 @@ pipeline {
           buildInfo.env.collect()
 
           server.publishBuildInfo(buildInfo)
-              echo '<----------------- Jar Publish Finished ------------------> 
+
+              echo "<----------------- Jar Publish Finished ------------------>"
          }
        }
     
     }
   }
 }
+
 

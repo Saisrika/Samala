@@ -14,6 +14,7 @@ pipeline {
                 echo "-------------------build started-----------------"
                 sh 'mvn clean install -Dmaven.test.skip=true'
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
+                sh '-DaltDeploymentRepository=artifactory-releases::default::https://trialrbzab7.jfrog.io/artifactory/libs-release-local'
                 
                 echo "-------------------build Ended-----------------"
             }

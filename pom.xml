@@ -11,7 +11,6 @@
     <name>Samala Maven Webapp</name>
     <url>http://www.example.com</url>
 
-    <!-- Consolidated Properties -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
@@ -57,11 +56,13 @@
     <distributionManagement>
         <repository>
             <id>artifactory-releases</id>
-            <url>https://your-artifactory-domain/artifactory/libs-release-local</url>
+            <!-- Updated URL for your Artifactory instance -->
+            <url>https://trialrbzab7.jfrog.io/artifactory/libs-release-local</url>
         </repository>
         <snapshotRepository>
             <id>artifactory-snapshots</id>
-            <url>https://your-artifactory-domain/artifactory/libs-snapshot-local</url>
+            <!-- Updated URL for your Artifactory instance -->
+            <url>https://trialrbzab7.jfrog.io/artifactory/libs-snapshot-local</url>
         </snapshotRepository>
     </distributionManagement>
 

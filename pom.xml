@@ -10,13 +10,13 @@
   <packaging>war</packaging>
 
   <name>Samala Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
+    <sonar.java.source>8</sonar.java.source>
   </properties>
 
   <dependencies>
@@ -30,38 +30,93 @@
 
   <build>
     <finalName>Samala</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    
+    <pluginManagement>
       <plugins>
+        <!-- Clean Plugin -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.4.0</version>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+
+        <!-- Resources Plugin -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.3.1</version>
         </plugin>
+
+        <!-- Compiler Plugin -->
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.13.0</version>
         </plugin>
+
+        <!-- Surefire Plugin for Unit Tests -->
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.3.0</version>
         </plugin>
+
+        <!-- WAR Plugin -->
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.4.0</version>
         </plugin>
+
+        <!-- Install Plugin (to install artifacts locally) -->
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>3.1.2</version>
         </plugin>
+
+        <!-- Deploy Plugin (to deploy artifacts to remote repositories) -->
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.1.2</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>deploy</goal>
+              </goals>
+              <phase>deploy</phase>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Jacoco Plugin for code coverage -->
+        <plugin>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.7</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>prepare-agent</goal>
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Sonar Maven Plugin for SonarQube Analysis -->
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.9.1.2184</version>
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <!-- Repository for Deploy -->
+    <distributionManagement>
+      <repository>
+        <id>jfrog-repository</id>
+        <url>https://trialrbzab7.jfrog.io/artifactory/sai-libs-release-local</url> <!-- Using the local release repo -->
+      </repository>
+      <snapshotRepository>
+        <id>jfrog-snapshot-repository</id>
+        <url>https://trialrbzab7.jfrog.io/artifactory/sai-libs-snapshot-local</url> <!-- You can use this if you have a separate snapshot repo -->
+      </snapshotRepository>
+    </distributionManagement>
+
   </build>
 </project>

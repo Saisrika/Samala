@@ -10,13 +10,13 @@
   <packaging>war</packaging>
 
   <name>Samala Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
-    <sonar.java.source>8</sonar.java.source>
   </properties>
 
   <dependencies>
@@ -30,13 +30,13 @@
 
   <build>
     <finalName>Samala</finalName>
-
-    <pluginManagement>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.4.0</version>
         </plugin>
+        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.3.1</version>
@@ -60,46 +60,8 @@
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.1.2</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>deploy</goal>
-              </goals>
-              <phase>deploy</phase>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.7</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>prepare-agent</goal>
-                <goal>report</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.sonarsource.scanner.maven</groupId>
-          <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.9.1.2184</version>
         </plugin>
       </plugins>
     </pluginManagement>
   </build>
-
-  <!-- Place the distributionManagement at this level (not inside <build>) -->
-  <distributionManagement>
-    <repository>
-      <id>jfrog-repository</id>
-      <url>https://trialrbzab7.jfrog.io/artifactory/sai-libs-release-local</url>
-    </repository>
-    <snapshotRepository>
-      <id>jfrog-snapshot-repository</id>
-      <url>https://trialrbzab7.jfrog.io/artifactory/sai-libs-snapshot-local</url>
-    </snapshotRepository>
-  </distributionManagement>
-
 </project>
